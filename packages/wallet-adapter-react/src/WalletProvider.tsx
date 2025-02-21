@@ -52,7 +52,7 @@ export const AptosWalletAdapterProvider: FC<AptosWalletProviderProps> = ({
   const [{ account, network, connected, wallet }, setState] =
     useState(initialState);
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [walletCore, setWalletCore] = useState<WalletCore>();
 
   const [wallets, setWallets] = useState<ReadonlyArray<AdapterWallet>>([]);
@@ -67,6 +67,18 @@ export const AptosWalletAdapterProvider: FC<AptosWalletProviderProps> = ({
       disableTelemetry
     );
     setWalletCore(walletCore);
+
+    walletCore.on("standardWalletsAdded", (wallet) => {
+      setWallets((prev) => {
+        if (!prev.find((wl) => wl.name === wallet.name))
+          return [...prev, wallet];
+        else return prev;
+      });
+    });
+
+    return () => {
+      walletCore.removeAllListeners();
+    };
   }, []);
 
   // Update initial Wallets state once WalletCore has been initialized
@@ -77,19 +89,19 @@ export const AptosWalletAdapterProvider: FC<AptosWalletProviderProps> = ({
 
   useEffect(() => {
     if (autoConnect) {
-      if (localStorage.getItem("AptosWalletName") && !connected) {
-        connect(localStorage.getItem("AptosWalletName") as string);
-      } else {
-        // if we dont use autoconnect set the connect is loading to false
-        setIsLoading(false);
+      if (localStorage.getItem("AptosWalletName") && !connected && !isLoading) {
+        connect(localStorage.getItem("AptosWalletName") as string, true);
       }
     }
   }, [autoConnect, wallets]);
 
-  const connect = async (walletName: string): Promise<void> => {
+  const connect = async (
+    walletName: string,
+    silent?: boolean
+  ): Promise<void> => {
     try {
       setIsLoading(true);
-      await walletCore?.connect(walletName);
+      await walletCore?.connect(walletName, silent);
     } catch (error: any) {
       if (onError) onError(error);
       return Promise.reject(error);

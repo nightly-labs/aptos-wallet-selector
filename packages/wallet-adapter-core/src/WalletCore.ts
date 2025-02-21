@@ -6,6 +6,7 @@ import {
   AnyPublicKeyVariant,
   AnyRawTransaction,
   Aptos,
+  Ed25519PublicKey,
   InputSubmitTransactionData,
   MultiEd25519PublicKey,
   MultiEd25519Signature,
@@ -131,7 +132,7 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
   private _wallet: AdapterWallet | null = null;
 
   // Local private variable to hold SDK wallets in the adapter
-  private readonly _sdkWallets: AdapterWallet[] = [];
+  private _sdkWallets: AdapterWallet[] = [];
 
   // Local array that holds all the wallets that are AIP-62 standard compatible
   private _standard_wallets: AdapterWallet[] = [];
@@ -160,6 +161,10 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
   // Local flag to disable the adapter telemetry tool
   private _disableTelemetry: boolean = false;
 
+  // some wallets are injected with a delay
+  private _arrivingWalletsIntervalId: NodeJS.Timeout | undefined = undefined;
+  private _checksCounter: number = 0;
+
   // Google Analytics 4 module
   private readonly ga4: GA4 | null = null;
 
@@ -173,6 +178,7 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
     this._dappConfig = dappConfig;
     this._disableTelemetry = disableTelemetry ?? false;
     this._sdkWallets = getSDKWallets(this._dappConfig);
+    this.checkArrivingWallets();
 
     // If disableTelemetry set to false (by default), start GA4
     if (!this._disableTelemetry) {
@@ -205,6 +211,20 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
       let { aptosWallets } = getAptosWallets();
       that.setExtensionAIP62Wallets(aptosWallets);
     });
+  }
+
+  private checkArrivingWallets() {
+    clearInterval(this._arrivingWalletsIntervalId);
+
+    this._arrivingWalletsIntervalId = setInterval(() => {
+      // max 10 iterations
+      if (this._checksCounter === 9) {
+        clearInterval(this._arrivingWalletsIntervalId);
+      }
+      this._sdkWallets = getSDKWallets(this._dappConfig);
+      this.fetchSDKAIP62AptosWallets();
+      this._checksCounter++;
+    }, 500);
   }
 
   /**
@@ -253,9 +273,13 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
       }
       const isValid = isWalletWithRequiredFeatureSet(wallet);
 
-      if (isValid) {
+      if (
+        isValid &&
+        !this._standard_wallets.find((wl) => wl.name === wallet.name)
+      ) {
         wallet.readyState = WalletReadyState.Installed;
         this._standard_wallets.push(wallet);
+        this.emit("standardWalletsAdded", wallet);
       }
     });
   }
@@ -481,7 +505,7 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
    *
    * @param walletName. The wallet name we want to connect with.
    */
-  async connect(walletName: string): Promise<void | string> {
+  async connect(walletName: string, silent?: boolean): Promise<void | string> {
     // Checks the wallet exists in the detected wallets array
     const allDetectedWallets = this._standard_wallets;
 
@@ -525,7 +549,7 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
     }
 
     // Now we can connect to the wallet
-    await this.connectWallet(selectedWallet);
+    await this.connectWallet(selectedWallet, silent);
   }
 
   /**
@@ -537,11 +561,15 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
    * @emit emits "connect" event
    * @throws WalletConnectionError
    */
-  async connectWallet(selectedWallet: AdapterWallet): Promise<void> {
+  async connectWallet(
+    selectedWallet: AdapterWallet,
+    silent?: boolean
+  ): Promise<void> {
     try {
       this._connecting = true;
       this.setWallet(selectedWallet);
-      const response = await selectedWallet.features["aptos:connect"].connect();
+      const response =
+        await selectedWallet.features["aptos:connect"].connect(silent);
       if (response.status === UserResponseStatus.REJECTED) {
         throw new WalletConnectionError("User has rejected the request")
           .message;

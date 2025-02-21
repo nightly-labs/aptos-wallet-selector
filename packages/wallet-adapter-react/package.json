@@ -1,7 +1,7 @@
 {
-  "name": "@aptos-labs/wallet-adapter-react",
-  "version": "4.0.0",
-  "description": "Aptos Wallet Adapter React Provider",
+  "name": "@nightlylabs/wallet-adapter-react",
+  "version": "4.0.1",
+  "description": "Nightly Aptos Wallet Adapter React Provider",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,15 +19,8 @@
   "bugs": {
     "url": "https://github.com/aptos-labs/aptos-wallet-adapter/issues"
   },
-  "author": "aptoslabs.com",
-  "keywords": [
-    "Aptos",
-    "Aptos Labs",
-    "Wallet",
-    "Wallet Adapter",
-    "Wallet Adapter Provider",
-    "React"
-  ],
+  "author": "",
+  "keywords": [],
   "scripts": {
     "build:bundle": "tsup src/index.tsx --format esm,cjs --sourcemap",
     "build:declarations": "tsc --emitDeclarationOnly --declaration --declarationMap",

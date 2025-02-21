@@ -6,6 +6,7 @@ import { Network } from "@aptos-labs/ts-sdk";
 import { DevTWallet, TWallet } from "@atomrigslab/aptos-wallet-adapter";
 import { MizuWallet } from "@mizuwallet-sdk/aptos-wallet-adapter";
 import { DappConfig, AdapterWallet } from "./WalletCore";
+import { getNightlySnapAdapter, NightlySnap } from "./moveSnap";
 
 export function getSDKWallets(dappConfig?: DappConfig) {
   const sdkWallets: AdapterWallet[] = [];
@@ -52,6 +53,11 @@ export function getSDKWallets(dappConfig?: DappConfig) {
 
   // Add new SDK wallet plugins (ones that should be installed as packages) here:
   // Ex. sdkWallets.push(new YourSDKWallet(dappConfig))
+  const nightlySnap = getNightlySnapAdapter();
+
+  if (nightlySnap && nightlySnap.isMetamaskReady) {
+    sdkWallets.push(nightlySnap);
+  }
 
   return sdkWallets;
 }
