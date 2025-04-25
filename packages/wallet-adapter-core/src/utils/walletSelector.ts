@@ -103,7 +103,11 @@ export function groupAndSortWallets(
   wallets: ReadonlyArray<AdapterWallet | AdapterNotDetectedWallet>,
   options?: WalletSortingOptions
 ) {
-  const { aptosConnectWallets, otherWallets } = getAptosConnectWallets(wallets);
+  const walletsFiltered = Array.from(
+    new Map(wallets.map((wallet) => [wallet.name, wallet])).values()
+  );
+  const { aptosConnectWallets, otherWallets } =
+    getAptosConnectWallets(walletsFiltered);
   const { defaultWallets, moreWallets } = partitionWallets(otherWallets);
 
   if (options?.sortAptosConnectWallets) {

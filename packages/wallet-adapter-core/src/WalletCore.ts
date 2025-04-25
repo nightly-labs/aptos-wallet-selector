@@ -272,7 +272,6 @@ export class WalletCore extends EventEmitter<WalletCoreEvents> {
         return;
       }
       const isValid = isWalletWithRequiredFeatureSet(wallet);
-
       if (
         isValid &&
         !this._standard_wallets.find((wl) => wl.name === wallet.name)
