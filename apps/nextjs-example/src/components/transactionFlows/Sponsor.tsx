@@ -4,7 +4,7 @@ import {
   AccountAuthenticator,
   AnyRawTransaction,
 } from "@aptos-labs/ts-sdk";
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { useWallet } from "@nightlylabs/wallet-adapter-react";
 import { useState } from "react";
 import { TransactionHash } from "../TransactionHash";
 import { Button } from "../ui/button";

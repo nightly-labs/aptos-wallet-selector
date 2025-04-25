@@ -1,7 +1,7 @@
 import { isSendableNetwork, aptosClient } from "@/utils";
 import { parseTypeTag, AccountAddress, U64 } from "@aptos-labs/ts-sdk";
 import { InputTransactionData } from "@nightlylabs/wallet-adapter-core";
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { useWallet } from "@nightlylabs/wallet-adapter-react";
 import { Button } from "../ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 import { useToast } from "../ui/use-toast";

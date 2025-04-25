@@ -2,7 +2,7 @@ import { aptosClient, isSendableNetwork } from "@/utils";
 import {
   InputTransactionData,
   useWallet,
-} from "@aptos-labs/wallet-adapter-react";
+} from "@nightlylabs/wallet-adapter-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { useToast } from "../ui/use-toast";

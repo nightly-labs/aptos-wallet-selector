@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
-    "@aptos-labs/wallet-adapter-react": "workspace:*",
+    "@nightlylabs/wallet-adapter-react": "workspace:*",
     "antd": "^5.18.3"
   },
   "peerDependencies": {

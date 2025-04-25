@@ -38,16 +38,16 @@ submitTransaction
 Install wallet dependencies you want to include in your app.
 To do that, you can look at our [supported wallets list](https://github.com/aptos-labs/aptos-wallet-adapter#supported-wallet-packages). Each wallet is a link to npm package where you can install it from.
 
-Next, install the `@aptos-labs/wallet-adapter-react`
+Next, install the `@nightlylabs/wallet-adapter-react`
 
 ```cli
-pnpm i @aptos-labs/wallet-adapter-react
+pnpm i @nightlylabs/wallet-adapter-react
 ```
 
 using npm
 
 ```cli
-npm i @aptos-labs/wallet-adapter-react
+npm i @nightlylabs/wallet-adapter-react
 ```
 
 #### Import dependencies
@@ -55,7 +55,7 @@ npm i @aptos-labs/wallet-adapter-react
 Import the `AptosWalletAdapterProvider`.
 
 ```tsx
-import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
+import { AptosWalletAdapterProvider } from "@nightlylabs/wallet-adapter-react";
 ```
 
 Wrap your app with the Provider, pass it the relevant props.
@@ -107,10 +107,10 @@ import { Network } from "@aptos-labs/ts-sdk";
 
 #### Use Wallet
 
-On any page you want to use the wallet props, import `useWallet` from `@aptos-labs/wallet-adapter-react`
+On any page you want to use the wallet props, import `useWallet` from `@nightlylabs/wallet-adapter-react`
 
 ```tsx
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { useWallet } from "@nightlylabs/wallet-adapter-react";
 ```
 
 Then you can use the exported properties
@@ -303,4 +303,4 @@ The available UI Packages are
 - [shadcn/ui](../../apps/nextjs-example/README.md#use-shadcnui-wallet-selector-for-your-own-app)
 - [MUI](../wallet-adapter-mui-design/)
 
-If you want to create your own wallet selector UI from existing components and styles in your app, `@aptos-labs/wallet-adapter-react` provides a series of headless components and utilities to simplify this process so that you can focus on writing CSS instead of implementing business logic. For more information, check out the [Building Your Own Wallet Selector](./docs/BYO-wallet-selector.md) document.
+If you want to create your own wallet selector UI from existing components and styles in your app, `@nightlylabs/wallet-adapter-react` provides a series of headless components and utilities to simplify this process so that you can focus on writing CSS instead of implementing business logic. For more information, check out the [Building Your Own Wallet Selector](./docs/BYO-wallet-selector.md) document.

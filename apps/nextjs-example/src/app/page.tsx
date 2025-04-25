@@ -21,8 +21,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { isMainnet } from "@/utils";
 import { Network } from "@aptos-labs/ts-sdk";
-import { WalletSelector as AntdWalletSelector } from "@aptos-labs/wallet-adapter-ant-design";
-import { WalletConnector as MuiWalletSelector } from "@aptos-labs/wallet-adapter-mui-design";
 import {
   AccountInfo,
   AdapterWallet,
@@ -31,7 +29,7 @@ import {
   WalletInfo,
   isAptosNetwork,
   useWallet,
-} from "@aptos-labs/wallet-adapter-react";
+} from "@nightlylabs/wallet-adapter-react";
 import { init as initTelegram } from "@telegram-apps/sdk";
 import { AlertCircle } from "lucide-react";
 import Image from "next/image";
@@ -68,7 +66,7 @@ export default function Home() {
             {network?.name ? ` — ${network.name}` : ""}
           </h1>
           <a
-            href="https://github.com/aptos-labs/aptos-wallet-adapter/tree/main/apps/nextjs-example"
+            href="https://github.com/nightly-labs/aptos-wallet-selector/tree/main/apps/nextjs-example"
             target="_blank"
             rel="noreferrer"
             className="text-sm text-muted-foreground underline underline-offset-2 font-medium leading-none"
@@ -120,19 +118,18 @@ function WalletSelection() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap gap-6 pt-6 pb-12 justify-between items-center">
+        <div className="flex flex-wrap gap-6  pb-6 justify-between items-center">
           <div className="flex flex-col gap-4 items-center">
-            <div className="text-sm text-muted-foreground">shadcn/ui</div>
             <ShadcnWalletSelector />
           </div>
-          <div className="flex flex-col gap-4 items-center">
+          {/* <div className="flex flex-col gap-4 items-center">
             <div className="text-sm text-muted-foreground">Ant Design</div>
             <AntdWalletSelector />
           </div>
           <div className="flex flex-col gap-4 items-center">
             <div className="text-sm text-muted-foreground">Material UI</div>
             <MuiWalletSelector />
-          </div>
+          </div> */}
         </div>
         <label className="flex items-center gap-4 cursor-pointer">
           <Switch

@@ -1,6 +1,6 @@
 "use client";
 
-import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
+import { AptosWalletAdapterProvider } from "@nightlylabs/wallet-adapter-react";
 import { PropsWithChildren } from "react";
 import { Network } from "@aptos-labs/ts-sdk";
 import { useClaimSecretKey } from "@/hooks/useClaimSecretKey";

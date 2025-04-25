@@ -37,16 +37,16 @@ signAndSubmitBCSTransaction
 Install wallet dependencies you want to include in your app.
 To do that, you can look at our [supported wallets list](https://github.com/aptos-labs/aptos-wallet-adapter#supported-wallet-packages). Each wallet is a link to npm package where you can install it from.
 
-Next, install the `@aptos-labs/wallet-adapter-react`
+Next, install the `@nightlylabs/wallet-adapter-react`
 
 ```
-pnpm i @aptos-labs/wallet-adapter-react
+pnpm i @nightlylabs/wallet-adapter-react
 ```
 
 using npm
 
 ```
-npm i @aptos-labs/wallet-adapter-react
+npm i @nightlylabs/wallet-adapter-react
 ```
 
 #### Import dependencies
@@ -62,7 +62,7 @@ import { SomeAptosWallet } from "some-aptos-wallet-package";
 Import the `AptosWalletAdapterProvider`.
 
 ```js
-import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
+import { AptosWalletAdapterProvider } from "@nightlylabs/wallet-adapter-react";
 ```
 
 Wrap your app with the Provider, pass it the `plugins (wallets)` you want to have on your app as an array and a `autoConnect` option (set to false by default)
@@ -83,10 +83,10 @@ const wallets = [new AptosWallet()];
 
 #### Use Wallet
 
-On any page you want to use the wallet props, import `useWallet` from `@aptos-labs/wallet-adapter-react`
+On any page you want to use the wallet props, import `useWallet` from `@nightlylabs/wallet-adapter-react`
 
 ```js
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { useWallet } from "@nightlylabs/wallet-adapter-react";
 ```
 
 Then you can use the exported properties

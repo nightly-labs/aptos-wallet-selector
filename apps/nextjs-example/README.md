@@ -19,7 +19,7 @@ npx shadcn@latest add button collapsible dialog dropdown-menu toast
 
 - Copy the [wallet-selector.tsx](./src/components/WalletSelector.tsx) file from this repo to your `src/components/` directory.
 
-- If you have not already configured `AptosWalletAdapterProvider` for your app, you can also copy the [wallet-provider.tsx](./src/components/WalletProvider.tsx) file from this repo. Be sure to install the `@aptos-labs/wallet-adapter-react` package and the wallet adapter plugins for the wallet options you plan to support.
+- If you have not already configured `AptosWalletAdapterProvider` for your app, you can also copy the [wallet-provider.tsx](./src/components/WalletProvider.tsx) file from this repo. Be sure to install the `@nightlylabs/wallet-adapter-react` package and the wallet adapter plugins for the wallet options you plan to support.
 
 - Wrap your app with the `WalletProvider` component. See [layout.tsx](./src/app/layout.tsx) for an example.
 
