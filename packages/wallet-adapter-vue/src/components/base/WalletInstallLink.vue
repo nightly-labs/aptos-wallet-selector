@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AnyAptosWallet } from "@aptos-labs/wallet-adapter-core";
+import { AnyAptosWallet } from "@nightlylabs/wallet-adapter-core";
 
 interface WalletItemProps {
   installLink: AnyAptosWallet["url"] | undefined;

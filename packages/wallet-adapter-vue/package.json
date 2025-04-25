@@ -43,7 +43,7 @@
     "build": "pnpm build:bundle"
   },
   "dependencies": {
-    "@aptos-labs/wallet-adapter-core": "5.0.0"
+    "@nightlylabs/wallet-adapter-core": "5.0.1"
   },
   "devDependencies": {
     "vite": "5.3.6",

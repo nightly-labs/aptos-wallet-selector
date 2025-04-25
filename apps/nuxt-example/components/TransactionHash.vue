@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NetworkInfo, isAptosNetwork } from "@aptos-labs/wallet-adapter-core";
+import { NetworkInfo, isAptosNetwork } from "@nightlylabs/wallet-adapter-core";
 
 interface TransactionHashProps {
   hash: string;

@@ -16,7 +16,7 @@ import {
   Network,
   InputSubmitTransactionData,
   PendingTransactionResponse,
-} from "@aptos-labs/wallet-adapter-core";
+} from "@nightlylabs/wallet-adapter-core";
 import { ReactNode, FC, useState, useEffect, useCallback } from "react";
 import { WalletContext } from "./useWallet";
 

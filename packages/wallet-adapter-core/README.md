@@ -5,7 +5,7 @@ The core functionality for the wallet adapter that holds and manages the adapter
 ### Usage
 
 ```ts
-import { WalletCore } from "@aptos-labs/wallet-adapter-core";
+import { WalletCore } from "@nightlylabs/wallet-adapter-core";
 
 const walletCore = new WalletCore([], dappConfig);
 

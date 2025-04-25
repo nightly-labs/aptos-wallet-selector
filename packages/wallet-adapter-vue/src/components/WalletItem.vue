@@ -5,7 +5,7 @@ import {
   WalletReadyState,
   isRedirectable,
   isInstallRequired,
-} from "@aptos-labs/wallet-adapter-core";
+} from "@nightlylabs/wallet-adapter-core";
 import WalletIcon from "./base/WalletIcon.vue";
 import WalletName from "./base/WalletName.vue";
 import WalletConnectButton from "./base/WalletConnectButton.vue";
@@ -35,7 +35,7 @@ const isReady = computed(() => {
   return Boolean(
     isWalletReady.value ||
       (isRedirectable() && mobileSupport.value) ||
-      isInstallRequired(wallet.value),
+      isInstallRequired(wallet.value)
   );
 });
 </script>

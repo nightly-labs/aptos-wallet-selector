@@ -1,5 +1,6 @@
 {
   "name": "@nightlylabs/wallet-adapter-core",
+  "private": false,
   "version": "5.0.1",
   "description": "Nightly Aptos Wallet Adapter Core",
   "main": "./dist/index.js",

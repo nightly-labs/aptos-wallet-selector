@@ -1,5 +1,5 @@
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
-import { NetworkInfo } from "@aptos-labs/wallet-adapter-core";
+import { NetworkInfo } from "@nightlylabs/wallet-adapter-core";
 
 export const aptosClient = (network?: NetworkInfo | null) => {
   if (network?.name === Network.DEVNET) {
@@ -29,14 +29,14 @@ export const TESTNET_CLIENT = new Aptos(TESTNET_CONFIG);
 
 export const isSendableNetwork = (
   connected: boolean,
-  networkName?: string,
+  networkName?: string
 ): boolean => {
   return connected && !isMainnet(connected, networkName);
 };
 
 export const isMainnet = (
   connected: boolean,
-  networkName?: string,
+  networkName?: string
 ): boolean => {
   return connected && networkName === Network.MAINNET;
 };

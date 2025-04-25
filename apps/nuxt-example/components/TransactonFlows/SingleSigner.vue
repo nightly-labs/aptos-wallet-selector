@@ -2,7 +2,7 @@
 import { computed, h } from "vue";
 import { aptosClient, isSendableNetwork } from "@/utils";
 import { AccountAddress, parseTypeTag, U64 } from "@aptos-labs/ts-sdk";
-import { InputTransactionData } from "@aptos-labs/wallet-adapter-core";
+import { InputTransactionData } from "@nightlylabs/wallet-adapter-core";
 import TransactionHash from "~/components/TransactionHash.vue";
 import { useToast } from "~/components/ui/toast";
 const { toast } = useToast();
@@ -20,7 +20,7 @@ const {
 const APTOS_COIN = "0x1::aptos_coin::AptosCoin";
 
 const isSendable = computed(() =>
-  isSendableNetwork(connected.value, network.value?.name || undefined),
+  isSendableNetwork(connected.value, network.value?.name || undefined)
 );
 
 const onSignMessageAndVerify = async () => {
@@ -126,7 +126,7 @@ const onSignTransactionV2 = async () => {
 
   try {
     const transactionToSign = await aptosClient(
-      network.value,
+      network.value
     ).transaction.build.simple({
       sender: account.value?.address,
       data: {

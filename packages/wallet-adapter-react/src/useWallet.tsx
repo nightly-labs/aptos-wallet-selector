@@ -14,7 +14,7 @@ import {
   AptosChangeNetworkOutput,
   PendingTransactionResponse,
   InputSubmitTransactionData,
-} from "@aptos-labs/wallet-adapter-core";
+} from "@nightlylabs/wallet-adapter-core";
 
 export interface WalletContextState {
   connected: boolean;
