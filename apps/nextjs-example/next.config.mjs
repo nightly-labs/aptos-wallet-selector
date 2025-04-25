@@ -2,6 +2,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: "/aptos-wallet-adapter",
   output: "export",
   images: {
     unoptimized: true,
